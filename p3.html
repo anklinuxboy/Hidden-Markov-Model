@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<title> CS440/640 Programming 3: Artificial Intelligence: HMM -- Sang Han &amp; Ankit Sharma </title>
+		<style>
+			<!--
+			body{
+				font-family: 'Trebuchet MS', Verdana;
+			}
+			p{
+				font-family: 'Trebuchet MS', Times;
+				margin: 10px 10px 15px 20px;
+			}
+			h3{
+				margin: 5px;
+			}
+			h2{
+				margin: 10px;
+			}
+			h1{
+				margin: 10px 0px 0px 20px;
+			}
+			div.main-body{
+				align:center;
+				margin: 30px;
+			}
+			hr{
+				margin:20px 0px 20px 0px;
+			}
+			-->
+		</style>
+	</head>
+
+
+	<body>
+		<center>
+			<a href="http://www.bu.edu"><img border="0"
+				src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif" alt="Boston University"
+				width="119" height="120"></a>
+		</center>
+
+		<h1>Artificial Intelligence: HMM</h1>
+		<p> 
+		CS 440/640 Programming 3 <br>
+		Sang Han <br>
+		Ankit Sharma <br> 
+		</p>
+
+		<div class="main-body">
+			<hr>
+			<h2> Problem Definition </h2>
+			<p>
+			We have implemented a Hidden Markov Model with forward algorithm, Viterbi algorithm and to optimize we use the Baum-Welch algorithm.
+			</p>
+			<p>
+			<u>Assumptions</u>
+			<ul>
+				<li>The example files are used to test the HMM.
+				<li>The HMM model being tested is the one being given.
+			</ul>
+			</p>
+			<p>
+			<u>Difficulties</u>
+			<ol>
+				<li>The Baum-Welch algorithm took a lot of time to implement and gives some weird results because loop variables are started from 0 to n-1 and in the algorithm we had to implement from 1 to T-1 and then 					    only for time T so there had some trouble.
+			</ol>
+			</p>
+			<p>
+			<u> Question 1</u>
+			<ul>
+				<li>The probabilities are low because of the way the model is structured.
+				<li>This tells the probability of observing the current observation sequence with the current model.
+				<li>Yes and no. It gives good answers sometimes but gives bad answers also for some sequences.
+				<li>The probability for "movies do students play games" is .018%. For "games develop play students" = 0%
+			</ul>
+			</p>
+			<p>
+			<u>Question 2</u>
+			<ul>
+				<li>The HMM finds the paths correctly but it's not able to judge between statement and question sentence because it has no notion of a what makes sentence a question. And plus there is no state called 				            interrogation state which can handle words which have question mark with them.  
+			</ul>
+			</p>
+			<p>
+			<u>Question 3</u>
+			<ul>
+				<li>We shouldn't try to optimize HMM with zero probability because it means that there is no chance of the current sentence being observed. So, it will give weird results and not optimize it.
+			</ul>
+			</p>
+	<p>
+			<u>Question 4</u>
+			<ul>
+				<li>We need to have more states for Adveerb and Present tense. Matrices A, B and Pi will need to accomodate these new states and their values will change. A will now be 6x6 size, B will be 6x8 and pi will be 1x6.
+			</ul>
+			</p>
+
+			<hr>
+			<h2> Method and Implementation </h2>
+			<p>
+			We are using the forward, Viterbia, and Baum Welch algorithm as in the Rabiner paper, and we first train it on the data set given to us and then test it on the test data to determine the error. We try to 				optimize the network by varying the different parameters like number of nodes in the hidden layer, learning rate, to find the lowest error.
+			</p>
+			<p>
+			Forward Algorithm:
+			</p>	
+			<p>
+			To demonstrate the recursion, let
+			</p>
+			<p>
+        		alpha_t(x_t) = p(x_t,y_{1:t}) = \sum_{x_{t-1}}p(x_t,x_{t-1},y_{1:t}).
+			</p>
+			Using the chain rule to expand p(x_t,x_{t-1},y_{1:t}), we can then write
+			<p>
+			alpha_t(x_t) = \sum_{x_{t-1}}p(y_t|x_t,x_{t-1},y_{1:t-1})p(x_t|x_{t-1},y_{1:t-1})p(x_{t-1},y_{1:t-1}).
+			</p>
+			<p>
+			Because y_t is conditionally independent of everything but x_t, and x_t is conditionally independent of everything but x_{t-1}, this simplifies to
+			</p>
+			<p>
+        		alpha_t(x_t) = p(y_t|x_t)\sum_{x_{t-1}}p(x_t|x_{t-1})\alpha_{t-1}(x_{t-1}).
+			</p>
+			<p>
+	
+			</p>
+<p>
+			</p>
+<p>
+			</p>
+<p>
+			</p>
+<p>
+			</p>
+<p>
+			</p>
+<p>
+			</p>
+		<hr>
+		<h2>Experiments</h2>
+		<p>
+		We tried the HMM with different observations and it showed the correct state paths and sometimes for a correct sentence it showed lower probability than a correct sentence.
+		</p>
+
+
+			<hr>
+			<h2> Discussion </h2>
+
+			<p> 
+			The Hidden Markov Model is a great tool for Natural Langauge Processing. We think with the right data, we can use it for better predicitons and more fruitful results.
+			</p>
+
+
+			<hr>
+			<h2> Conclusions </h2>
+
+			<p>
+			The method works well for some observations but not so well for some other observations.
+			</p>
+
+
+			<hr>
+			<h2> Credits and Bibliography </h2>
+			<p>L. R. Rabiner. A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition, Proceedings of the IEEE, 77(2), pp. 257-286, 1989</p>
+			<!-- <p> Credit any joint work or discussions with your classmates. </p> -->
+			<hr>
+
+		</div>
+	</body>
+</html>
